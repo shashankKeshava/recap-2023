@@ -11,11 +11,20 @@ function Square({ value, handleSquareClick }) {
 
 function Board() {
 	const [squares, setSquare] = useState(Array(9).fill(null));
-	// console.log(squares);
+	const [isXNext, setXisNext] = useState(false);
 
 	function handleClick(i) {
 		const nextSquare = squares.slice();
-		nextSquare[i] = 'X';
+		if (squares[i]) {
+			return;
+		}
+		if (isXNext) {
+			nextSquare[i] = 'O';
+		} else {
+			nextSquare[i] = 'X';
+		}
+
+		setXisNext(!isXNext);
 		setSquare(nextSquare);
 		console.log('index:', i);
 	}
